@@ -24,21 +24,41 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+The Application class
 """
 
-GI_VERSIONS = {
-   'Gio': '2.0',
-   'GLib': '2.0',
-   'GObject': '2.0',
-   'Gtk': '3.0',
-}
+from gi.repository import Gio, GLib, GObject, Gtk
 
-import gi
+from . import log
 
-gi.require_versions(GI_VERSIONS)
+class Application(Gtk.Application):
+    """ The main Application for A Toggle Darkly 
 
-from .application import Application
+    Arguments:
+        :str id: The application ID
+    """
+
+    def __init__(self, id='in.donotspellitgav.ToggleDarkly'):
+        super().__init__(
+            application_id=id,
+            flags=Gio.ApplicationFlags.FLAGS_NONE
+        )
+        GLib.set_application_name('A Toggle Darkly')
+        GLib.set_prgname(id)
+
+        self._window = None
+        self._log = log.get_main_logger()
+    
+    # @GObject.Property(type=Window, flags=GObject.ParamFlags.READABLE)
+    # def window(self):
+    #     """:Window: Main Application Window."""
+    #     return self._window
+
+    @GObject.Property(
+        type=log.logging.Logger, default=None, flags=GObject.ParamFlags.READABLE)
+    def log(self):
+        """:logging.Logger: Application-wide logging facility."""
+        return self._log
 
 
-def run(id='in.donotspellitgav.ToggleDarkly'):
-   pass
