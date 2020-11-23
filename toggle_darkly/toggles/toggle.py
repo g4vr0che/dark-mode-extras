@@ -28,7 +28,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 The base toggle class
 """
 
-class Toggle:
+class BaseToggle:
     """ A toggle item which can be subclassed to support different toggles
 
     Allows different types of toggles to run each time dark mode is enabled or
@@ -56,8 +56,7 @@ class Toggle:
     
     @property
     def mode(self) -> str:
-        """ :str: The kind of toggle this is."""
-        return 'BaseToggle'
+        return type(self).__name__
     
     @property
     def name(self) -> str:

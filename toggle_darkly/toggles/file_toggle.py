@@ -74,7 +74,6 @@ class FileToggle(Toggle):
 
         return True
 
-
     @property
     def path(self) -> Path:
         return self._path
