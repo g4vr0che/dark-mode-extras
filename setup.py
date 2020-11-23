@@ -38,7 +38,7 @@ def get_version():
     #pylint: disable=exec-used
     # Just getting the version.
     version = {}
-    with open(Path('dark_mode_extras') / '__version__.py') as fp:
+    with open(Path('toggle_darkly') / '__version__.py') as fp:
         exec(fp.read(), version)
     return version['__version__']
 
@@ -170,8 +170,8 @@ class Test(Command):
 
     def run(self):
         pytest_command = ['pytest-3']
-        flakes_command = ['pyflakes3', '.']
-        lint_command = ['pylint', '.']
+        flakes_command = ['pyflakes3', 'toggle_darkly']
+        lint_command = ['pylint', 'toggle_darkly']
 
         if not self.skip_test:
             subprocess.run(pytest_command)
@@ -183,16 +183,16 @@ class Test(Command):
             subprocess.run(lint_command)
 
 setup(
-    name='dark-mode-extras',
+    name='toggle-darkly',
     version=get_version(),
     author='Gav',
     author_email='gavroyer@gmail.com',
-    url='https://github.com/g4vr0che/dark_mode_extras',
+    url='https://github.com/g4vr0che/toggle_darkly',
     description='Extra hooks for dark mode switching',
-    download_url='https://github.com/g4vr0che/dark_mode_extras/releases',
+    download_url='https://github.com/g4vr0che/toggle_darkly/releases',
     long_description=long_description,
     license='BSD-2',
-    packages=['dark_mode_extras'],
+    packages=['toggle_darkly'],
     cmdclass={'release': Release, 'test': Test},
     # scripts=[],
     # data_files=[]
