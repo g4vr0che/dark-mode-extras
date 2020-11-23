@@ -46,16 +46,18 @@ with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 classifiers = [
-    'Environment :: Console',
-    'Intended Audience :: System Administrators',
-    'Intended Audience :: End Users/Desktop',
-    'Intended Audience :: Developers',
-    'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',
-    'Natural Language :: English',
-    'Operating System :: POSIX :: Linux',
-    'Programming Language :: Python :: 3',
-    'Topic :: Software Development :: Libraries :: Python Modules',
-    'Topic :: System'
+    "Development Status :: 1 - Planning",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: BSD License",
+    "License :: DFSG approved",
+    "Natural Language :: English",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Utilities",
+    "Typing :: Typed"
 ]
 
 class Release(Command):
