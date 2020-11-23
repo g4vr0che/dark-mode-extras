@@ -25,7 +25,45 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Toggles to be added
+The base toggle class
 """
 
-# This file should be empty
+class Toggle:
+    """ A toggle item which can be subclassed to support different toggles
+
+    Allows different types of toggles to run each time dark mode is enabled or
+    disabled.
+    """
+
+    def __init__(self):
+        self._name: str = None
+    
+    def light_mode(self) -> bool:
+        """ Runs each time dark mode is disabled (light mode is enabled)
+        
+        Returns:
+            :bool: Whether the toggle was successful.
+        """
+        return True
+    
+    def dark_mode(self) -> bool:
+        """ Runs each time dark mode is enabled (light mode is disabled)
+        
+        Returns:
+            :bool: Whether the toggle was successful.
+        """
+        return True
+    
+    @property
+    def mode(self) -> str:
+        """ :str: The kind of toggle this is."""
+        return 'BaseToggle'
+    
+    @property
+    def name(self) -> str:
+        """ :str: The name of this toggle."""
+        return self._name
+    
+    @name.setter
+    def name(self, name: str):
+        self._name = name
