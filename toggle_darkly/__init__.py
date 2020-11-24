@@ -38,7 +38,7 @@ import gi
 gi.require_versions(GI_VERSIONS)
 
 from .application import Application
-
+from .toggles import file_toggle
 
 def run(id='in.donotspellitgav.ToggleDarkly'):
    pass

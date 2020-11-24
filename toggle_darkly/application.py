@@ -55,8 +55,7 @@ class Application(Gtk.Application):
     #     """:Window: Main Application Window."""
     #     return self._window
 
-    @GObject.Property(
-        type=log.logging.Logger, default=None, flags=GObject.ParamFlags.READABLE)
+    @property
     def log(self):
         """:logging.Logger: Application-wide logging facility."""
         return self._log

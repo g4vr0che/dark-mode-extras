@@ -28,10 +28,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 A toggle for flipping between two config files
 """
 from pathlib import Path
+import shutil
 
-from .toggle import Toggle
+from .toggle import BaseToggle
 
-class FileToggle(Toggle):
+class FileToggle(BaseToggle):
     """ A simple toggle that flips between two different config files.
 
     When dark mode is enabled, installs one version of a config file. When it is
@@ -56,7 +57,7 @@ class FileToggle(Toggle):
         """ Replace the current main config with the light mode config"""
 
         try:
-            self.main = self.main.rename(self.light)
+            shutil.copyfile(self.light, self.main)
 
         except FileNotFoundError:
             return False
@@ -67,7 +68,7 @@ class FileToggle(Toggle):
         """ Replace the current main config with the dark mode config"""
 
         try:
-            self.main = self.main.rename(self.dark)
+            shutil.copyfile(self.dark, self.main)
 
         except FileNotFoundError:
             return False
@@ -80,7 +81,7 @@ class FileToggle(Toggle):
 
     @path.setter
     def path(self, path: str):
-        self._path = Path(self._path) / path
+        self._path: Path = Path(path)
 
     @property
     def main(self) -> Path:
@@ -88,7 +89,7 @@ class FileToggle(Toggle):
 
     @main.setter
     def main(self, main: Path):
-        self._main = main
+        self._main: Path = main
 
     @property
     def light(self) -> Path:
@@ -96,7 +97,7 @@ class FileToggle(Toggle):
 
     @light.setter
     def light(self, light: str):
-        self._light = Path(self._path) / light
+        self._light: Path = Path(self._path) / light
 
     @property
     def dark(self) -> Path:
@@ -104,5 +105,5 @@ class FileToggle(Toggle):
 
     @dark.setter
     def dark(self, dark: str):
-        self._dark = Path(self._path) / dark
+        self._dark: Path = Path(self._path) / dark
 
